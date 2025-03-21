@@ -9,7 +9,7 @@ from datetime import datetime
 
 link=input("URL:")
 linkdata = whois.whois(link)
-print(linkdata)
+#print(linkdata)
 
 #creation date and current date, verify if the domain is older than a year
 
