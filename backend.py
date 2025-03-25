@@ -3,7 +3,9 @@
 
 import requests
 import whois
+import re
 from datetime import datetime
+from urllib.parse import urlparse
 
 #getting url input
 
@@ -29,6 +31,24 @@ def whoisd():
             return False
     
 if True and whoisd():
-     print("the domain creation date is older than a year")
+     print("-the domain creation date is older than a year")
 else:
-     print("the domain creation date is lesser than a year")
+     print("-the domain creation date is lesser than a year")
+
+#special char and long urls
+
+def is_long_url(url, max_length=100):
+    return len(url) > max_length
+
+def has_special_characters(url):
+    valid_pattern = r'^[a-zA-Z0-9\-._~:/?#[\]@!$&\'()*+,;=%]*$'
+    return not re.match(valid_pattern, url)
+
+def detect_url(durl):
+     if is_long_url(durl) or has_special_characters(durl):
+          return True
+     
+if True and detect_url(link):
+     print("-a problametic url")
+else:
+     print("-url has no special characters or exceeds the max lenght 100")
