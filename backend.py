@@ -65,6 +65,7 @@ if True and detect_url(link,flags):
 else:
      print("-url has no special characters or exceeds the max length 100")
      flags+=1
+     
 #check for ssl protocol
 
 def ssl_check(surl):
@@ -77,8 +78,8 @@ if True and ssl_check(link):
 else:
      print("-does not use ssl protocol, not safe")
 
-def percentage_calculator(flags,Total_checks):
-     divides = (flags/Total_Checks)
+def percentage_calculator(flags1,Total_checks):
+     divides = (flags1/Total_Checks)
      percentage = int(divides*100)
      print(f'Overall report % : {percentage}')
 percentage_calculator(flags,Total_Checks)
