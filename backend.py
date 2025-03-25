@@ -8,6 +8,9 @@ import sys
 from datetime import datetime
 from urllib.parse import urlparse
 
+flags = 0 # For percentage calculation
+Total_Checks = 3
+
 #getting url input
 
 link=input("URL:")
@@ -22,12 +25,11 @@ linkdata = whois.whois(link)
 
 #creation date and current date, verify if the domain is older than a year
 
-def whoisd():
+def whoisd(flags):
           linkcd = linkdata["creation_date"]
           if isinstance(linkcd, list):
             linkcd = linkcd[0]
           print(linkcd)
-          #linkcd2 = linkcd[0]
           linkcd1 = linkcd.date()
           linkcd3 = linkcd1.year
           nowdt = datetime.now()
@@ -39,7 +41,8 @@ def whoisd():
           else:
                return False
     
-if True and whoisd():
+if True and whoisd(flags):
+     flags += 1
      print("-the domain creation date is older than a year")
 else:
      print("-the domain creation date is lesser than a year")
@@ -53,15 +56,15 @@ def has_special_characters(url):
     valid_pattern = r'^[a-zA-Z0-9\-._~:/?#[\]@!$&\'()*+,;=%]*$'
     return not re.match(valid_pattern, url)
 
-def detect_url(durl):
+def detect_url(durl,flags):
      if is_long_url(durl) or has_special_characters(durl):
           return True
      
-if True and detect_url(link):
+if True and detect_url(link,flags):
      print("-a problametic url")
 else:
-     print("-url has no special characters or exceeds the max lenght 100")
-
+     print("-url has no special characters or exceeds the max length 100")
+     flags+=1
 #check for ssl protocol
 
 def ssl_check(surl):
@@ -69,6 +72,13 @@ def ssl_check(surl):
      return re.match(https_pattern, surl)
 
 if True and ssl_check(link):
+     flags += 1
      print("-uses ssl protocol")
 else:
      print("-does not use ssl protocol, not safe")
+
+def percentage_calculator(flags,Total_checks):
+     divides = (flags/Total_Checks)
+     percentage = int(divides*100)
+     print(f'Overall report % : {percentage}')
+percentage_calculator(flags,Total_Checks)
