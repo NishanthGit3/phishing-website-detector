@@ -4,12 +4,19 @@
 import requests
 import whois
 import re
+import sys
 from datetime import datetime
 from urllib.parse import urlparse
 
 #getting url input
 
 link=input("URL:")
+if "http" in link:
+     pass
+else:
+     print("-please enter an url that contains its protocol, ex: http://, https://")
+     print("-program terminated")
+     sys.exit()
 linkdata = whois.whois(link)
 #print(linkdata)
 
@@ -52,3 +59,14 @@ if True and detect_url(link):
      print("-a problametic url")
 else:
      print("-url has no special characters or exceeds the max lenght 100")
+
+#check for ssl protocol
+
+def ssl_check(surl):
+     https_pattern = r'^https:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&\'()*+,;=%]*$'
+     return re.match(https_pattern, surl)
+
+if True and ssl_check(link):
+     print("-uses ssl protocol")
+else:
+     print("-does not use ssl protocol, not safe")
