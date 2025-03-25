@@ -77,8 +77,8 @@ def safe_check_url(link):
           pass
           #print("-does not use ssl protocol, not safe")
 
-     def percentage_calculator(flags,Total_checks):
-          divides = (flags/Total_Checks)
+     def percentage_calculator(flags1,Total_checks):
+          divides = (flags1/Total_Checks)
           percentage = int(divides*100)
           #print(f'Overall report % : {percentage}')
           return percentage
