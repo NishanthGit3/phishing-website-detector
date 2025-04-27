@@ -7,7 +7,7 @@ import re
 import sys
 from datetime import datetime
 from urllib.parse import urlparse
-link=input("URL:")
+link1=input("URL:")
 
 def safe_check_url(link):
      flags = 0 # For percentage calculation
@@ -86,3 +86,4 @@ def safe_check_url(link):
 
      return report
 
+safe_check_url(link1)
